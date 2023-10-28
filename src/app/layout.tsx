@@ -8,6 +8,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import AuthProvider from "@/components/AuthProvider";
+import Login from "./login/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,9 +36,7 @@ export default function RootLayout({
               </Link>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                <Link href="/login">
-                  <Button color="inherit">LOGIN</Button>
-                </Link>
+                <AuthProvider><Login /></AuthProvider>
               </Box>
             </Toolbar>
           </AppBar>

@@ -1,33 +1,27 @@
+
+
+"use client";
 import React from "react";
-import styles from "./page.module.css";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Button from "@mui/material/Button";
+import Link from "next/link";
 
-const login = () => {
+const Login = () => {
+  const { data: session } = useSession();
+  if (session) {
+    return (
+      <>
+        <Button color="inherit" onClick={() => signOut()}>SIGN OUT</Button>
+      </>
+    );
+  }
   return (
-    <div className={styles.login}>
-      <div className={styles.form}>
-        <form noValidate>
-          <span>Login</span>
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter email id / username"
-            className="form-control inp_text"
-            id="email"
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            className="form-control"
-          />
-
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    </div>
+    <>
+      <Link href='/auth/signout'>
+        <Button color="inherit" >SIGN IN</Button>
+      </Link>
+    </>
   );
 };
 
-export default login;
+export default Login;

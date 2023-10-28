@@ -3,11 +3,9 @@ import NextAuth from "next-auth/next";
 import EmailProvider from "next-auth/providers/email";
 import CredentialsProvider from "next-auth/providers/credentials"
 
-const authOptions: NextAuthOptions = {
-    // Secret for Next-auth, without this JWT encryption/decryption won't work
+export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
 
-    // Configure one or more authentication providers
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -15,6 +13,7 @@ const authOptions: NextAuthOptions = {
                 username: { label: "Username", type: "text", placeholder: "jsmith" },
                 password: { label: "Password", type: "password" }
             },
+           
             async authorize(credentials, req) {
                 const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
 
@@ -24,8 +23,16 @@ const authOptions: NextAuthOptions = {
                     return null
                 }
             }
-        })
+        }),
     ],
+    pages: {
+        signIn: '/auth/credentials-signin',
+        signOut: '/auth/signout',
+        // error: '/auth/error', // Error code passed in query string as ?error=
+        // verifyRequest: '/auth/verify-request', // (used for check email message)
+        // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    },
+    
 };
 
 
