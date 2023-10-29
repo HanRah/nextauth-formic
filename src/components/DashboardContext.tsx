@@ -1,25 +1,34 @@
 "use client";
 
-import React from "react";
-
-import { useSession, signIn, signOut } from "next-auth/react";
+import React, { useEffect } from "react";
+import { redirect } from 'next/navigation'
+import { useSession, signOut } from "next-auth/react";
 
 const DashboardContext = () => {
     const { data: session } = useSession();
-    if (session) {
-        return (
-            <>
-                Signed in as {session.user?.email} <br />
-                <button onClick={() => signOut()}>Sign out</button>
-            </>
-        );
-    }
+
+    useEffect(() => {
+        if (!session) {
+            redirect('/api/auth/signin')
+        }
+    }, [session])
+
+    // if (!session) {
+    //     redirect('/api/auth/signin')
+    // }
+
     return (
         <>
-            Not signed in <br />
-            <button onClick={() => signIn()}>Sign in</button>
+            {session &&
+                <>
+                    Signed in as {session?.user?.email} <br />
+                    <button onClick={() => signOut()}>Sign out</button>
+                </>
+            }
         </>
     );
+
 };
 
 export default DashboardContext;
+
