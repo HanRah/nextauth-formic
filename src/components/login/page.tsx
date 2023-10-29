@@ -17,7 +17,7 @@ const Login = () => {
   }
   return (
     <>
-      <Link href='/auth/signout'>
+      <Link href='api/auth/signin'>
         <Button color="inherit" >SIGN IN</Button>
       </Link>
     </>
