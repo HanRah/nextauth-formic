@@ -1,11 +1,22 @@
 import React from "react";
 
-import DashboardContext from "@/components/DashboardContext";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-const Dashboard = () => {
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
+
+const Dashboard = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/signin");
+  }
 
   return (
-    <DashboardContext />
+    <div>
+      Dashboard
+      <pre>{JSON.stringify(session, null, 2)}</pre>
+    </div>
   );
 };
 

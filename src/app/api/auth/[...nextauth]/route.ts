@@ -13,9 +13,9 @@ export const authOptions: NextAuthOptions = {
                 username: { label: "Username", type: "text", placeholder: "jsmith" },
                 password: { label: "Password", type: "password" }
             },
-           
+
             async authorize(credentials, req) {
-                const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
+                const user = { id: "1", name: credentials?.username, email: credentials?.username }
 
                 if (user) {
                     return user
@@ -26,14 +26,9 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     pages: {
-        // signIn: 'api/auth/signin',
         signIn: '/signin',
-        signOut: '/auth/signout',
-        // error: '/auth/error', // Error code passed in query string as ?error=
-        // verifyRequest: '/auth/verify-request', // (used for check email message)
-        // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
     },
-    
+
 };
 
 
