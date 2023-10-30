@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Button from "@mui/material/Button";
-import Link from "next/link";
+import AuthProvider from "@/components/AuthProvider";
+import Login from "../components/login";
 import styles from "./page.module.css";
+
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Inter } from "next/font/google";
+
+import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import AuthProvider from "@/components/AuthProvider";
-import Login from "../components/login";
 
 const inter = Inter({ subsets: ["latin"] });
 
