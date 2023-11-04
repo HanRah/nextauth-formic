@@ -52,7 +52,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
@@ -71,7 +71,7 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
+    marginRight: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -123,7 +123,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              marginRight: 5,
+              marginLeft: 5,
               ...(open && { display: 'none' }),
             }}
           >
@@ -144,7 +144,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           </Box> */}
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} anchor='right'>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -152,13 +152,15 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+          {['سلام', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: 'block', justifyContent: 'space-between' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+                  textAlign: 'right',
+
                 }}
               >
                 <ListItemIcon
@@ -166,11 +168,12 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, paddingRight: '10px' }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -184,6 +187,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+                  textAlign: 'right',
                 }}
               >
                 <ListItemIcon
@@ -195,7 +199,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, paddingRight: '10px' }} />
               </ListItemButton>
             </ListItem>
           ))}
