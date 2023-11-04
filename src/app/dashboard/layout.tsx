@@ -1,10 +1,14 @@
 'use client'
 
 import * as React from 'react';
+
+import Link from "next/link";
+
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import Button from "@mui/material/Button";
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,6 +24,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import Login from '@/components/login';
 
 const drawerWidth = 240;
 
@@ -127,6 +132,16 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           <Typography variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography>
+          {/* <Link href="/home">
+            <Button color="inherit">HOME</Button>
+          </Link>
+          <Link href="/dashboard">
+            <Button color="inherit">DASHBOARD</Button>
+          </Link> */}
+          {/* <Box sx={{ flexGrow: 1 }} /> */}
+          {/* <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Login />
+          </Box> */}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -188,7 +203,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <div> {children}</div>;
+        <div>{children}</div>
       </Box>
     </Box>
   );

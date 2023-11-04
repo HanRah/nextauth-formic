@@ -11,8 +11,13 @@ import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
+import ThemeRegistry from "@/components/Theme";
+
 
 const inter = Inter({ subsets: ["latin"] });
+
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body className={inter.className}>
-        <Box sx={{ flexGrow: 1 }}>
+        {/* <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
               <Link href="/home">
@@ -42,8 +47,10 @@ export default function RootLayout({
               </Box>
             </Toolbar>
           </AppBar>
-        </Box>
-        <AuthProvider> {children}</AuthProvider>
+        </Box> */}
+        <ThemeRegistry theme={theme}>
+          <AuthProvider> {children}</AuthProvider>
+        </ThemeRegistry>
       </body>
     </html>
   );
